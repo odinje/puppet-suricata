@@ -1,0 +1,15 @@
+{
+  "name": "odinj-suricata",
+  "version": "0.1.0",
+  "author": "Bendik Hagen og Odin Jenseg",
+  "summary": "Setup and Configuration of Suricata IDS",
+  "license": "Apache-2.0",
+  "source": "https://github.com/odinje/puppet-suricata",
+  "project_page": "https://github.com/odinje/puppet-suricata",
+  "issues_url": "https://github.com/odinje/puppet-suricata/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
