@@ -21,7 +21,10 @@ class suricata (
   String $config_dir   = $::suricata::params::config_dir,
   Hash $config_vars    = $::suricata::params::config_vars
 ) inherits suricata::params {
-    
-  Class { '::suricata::install': } 
-  Class { '::suricata::config': }
+  
+  contain suricata::install
+  contain suricata::config
+
+  Class['::suricata::install']-> 
+  Class['::suricata::config']
 }
