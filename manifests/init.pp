@@ -35,7 +35,10 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class suricata {
-
-
+class suricata (
+  String $ensure       = $::suricata::params::ensure, # Should probaly regex
+  String $package_name = $::suricata::params::package_name 
+) inherits suricata::params {
+    
+  Class { '::suricata::install': } 
 }
