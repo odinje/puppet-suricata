@@ -1,44 +1,27 @@
 # == Class: suricata
 #
-# Full description of class suricata here.
+# Module to install and configure Suricata IDS
 #
 # === Parameters
 #
-# Document parameters here.
+# 
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*ensure*]
+#   Passes to suricata package
+#   Defaults to present
 #
-# === Variables
+# [*package_name*]
+#   Name of suricata package in repo
+#   Default to suricata
 #
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
-# === Examples
-#
-#  class { 'suricata':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
-#
-# === Authors
-#
-# Author Name <author@domain.com>
-#
-# === Copyright
-#
-# Copyright 2016 Your name here, unless otherwise noted.
 #
 class suricata (
   String $ensure       = $::suricata::params::ensure, # Should probaly regex
-  String $package_name = $::suricata::params::package_name 
+  String $package_name = $::suricata::params::package_name, 
+  String $config_dir   = $::suricata::params::config_dir,
+  Hash $config_vars    = $::suricata::params::config_vars
 ) inherits suricata::params {
     
   Class { '::suricata::install': } 
+  Class { '::suricata::config': }
 }
