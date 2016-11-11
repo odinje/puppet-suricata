@@ -16,15 +16,20 @@
 #
 #
 class suricata (
-  String $ensure       = $::suricata::params::ensure, # Should probaly regex
-  String $package_name = $::suricata::params::package_name, 
-  String $config_dir   = $::suricata::params::config_dir,
-  Hash $config_vars    = $::suricata::params::config_vars
+  String $ensure           = $::suricata::params::ensure, # Should probaly regex
+  String $package_name     = $::suricata::params::package_name, 
+  String $config_dir       = $::suricata::params::config_dir,
+  String $service_ensure   = $::suricata::params::service_ensure,
+  Boolean $service_enable  = $::suricata::params::service_enable,
+  String $service_provider = $::suricata::params::service_provider,
+  Hash $config_vars        = $::suricata::params::config_vars
 ) inherits suricata::params {
   
   contain suricata::install
   contain suricata::config
+  contain suricata::service
 
   Class['::suricata::install']-> 
-  Class['::suricata::config']
+  Class['::suricata::config']~>
+  Class['::suricata::service']
 }

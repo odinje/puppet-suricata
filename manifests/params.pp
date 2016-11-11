@@ -3,6 +3,10 @@ class suricata::params {
   $package_name = 'suricata'
   $config_dir   = '/etc/suricata'
 
+  $service_ensure   = 'running'
+  $service_enable   = true
+  $service_provider = 'systemd'
+
   $config_vars = {
     'address-groups' => {
       'HOME_NET'       => '[192.168.0.0/24]',
