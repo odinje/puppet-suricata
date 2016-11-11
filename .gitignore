@@ -1,3 +1,6 @@
 Gemfile.lock
 vendor/
 .bundle/
+spec/fixtures/modules/
+spec/fixtures/manifests/
+pkg/
