@@ -11,9 +11,9 @@
 
 vars:
   # more specifc is better for alert accuracy and performance
-  <% $suricata::config_vars.each do |$var_key,$var_hash| -%>
+  <% $suricata::config_vars.each |$var_key,$var_hash| -%>
   <%= $var_key %>
-    <% $var_hash.each do |$key,$value|  -%>
+    <% $var_hash.each |$key,$value|  -%>
     <%= "${key}: \"${value}\"" %>
     <% end %>
   <% end -%>
