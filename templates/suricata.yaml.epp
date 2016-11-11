@@ -1,10 +1,9 @@
 %YAML 1.1
 ---
-
-# Suricata configuration file. In addition to the comments describing all
-# options in this file, full documentation can be found at:
-# https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricatayaml
-
+# Manged by puppet
+#
+# Suricata configuration file.
+#
 ##
 ## Step 1: inform Suricata about your network
 ##
