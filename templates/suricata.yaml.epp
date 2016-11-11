@@ -11,12 +11,12 @@
 
 vars:
   # more specifc is better for alert accuracy and performance
-  <% $suricata::config_vars.each |$var_key,$var_hash| -%>
+  <% $suricata::config_vars.each |$var_key,$var_hash| { -%>
   <%= $var_key %>
-    <% $var_hash.each |$key,$value|  -%>
+    <% $var_hash.each |$key,$value| { -%>
     <%= "${key}: \"${value}\"" %>
-    <% end %>
-  <% end -%>
+    <% } -%>
+  <% } -%>
   address-groups:
     #HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
     #HOME_NET: "[192.168.0.0/16]"
