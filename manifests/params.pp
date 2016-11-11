@@ -4,7 +4,7 @@ class suricata::params {
   $config_dir   = '/etc/suricata'
 
   $config_vars = {
-    address-groups => {
+    'address-groups' => {
       'HOME_NET'       => '[192.168.0.0/24]',
       'EXTERNAL_NET'   => '!$HOME_NET',
       'HTTP_SERVERS'   => '$HOME_NET',
@@ -20,7 +20,7 @@ class suricata::params {
       'ENIP_CLIENT'    => '$HOME_NET',
       'ENIP_SERVERS'   => '$HOME_NET'
     },
-    port-groups     => {
+    'port-groups'     => {
       'HTTP_PORTS'      => '80',
       'SHELLCODE_PORTS' => '!80',
       'ORACLE_PORTS'    => '1521',

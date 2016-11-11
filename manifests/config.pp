@@ -5,6 +5,6 @@ class suricata::config {
     owner   => 'suricata',
     group   => 'root',
     mode    => '0600',
-    content => template('suricata/suricata.yaml.erb'),
+    content => epp('suricata/suricata.yaml.epp'),
   }
 }
