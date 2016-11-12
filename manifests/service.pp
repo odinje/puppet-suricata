@@ -16,7 +16,7 @@ class suricata::service {
   }
 
   exec { 'Daemon-reload':
-    command => '/bin/systemctl daemon-realod',
+    command => '/bin/systemctl daemon-reload',
     before  => Service['suricata'],
   }
 }
