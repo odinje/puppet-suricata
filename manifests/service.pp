@@ -12,9 +12,11 @@ class suricata::service {
     group   => 'root',
     mode    => '0644',
     content => epp('suricata/suricata.service.epp'),
-  }~>
+  }
   exec { 'Daemon-reload':
-    command => '/bin/systemctl daemon-reload',
-    notify  => Service['suricata'],
+    command     => '/bin/systemctl daemon-reload',
+    subscribe   => File['/usr/lib/systemd/system/suricata.service'],
+    refreshonly => true,
+    notify      => Service['suricata'],
   }
 }
