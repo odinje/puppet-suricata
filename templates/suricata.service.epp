@@ -1,0 +1,10 @@
+[Unit]
+Description=Suricata Intrusion Detection Service
+After=syslog.target network-online.target
+
+[Service]
+ExecStart=/sbin/suricata -c <%= "${::suricata::config_dir}/suricata.yaml" %> --user <%= $::suricata::user %>
+
+[Install]
+WantedBy=multi-user.target
+

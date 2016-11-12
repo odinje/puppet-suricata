@@ -18,6 +18,7 @@
 class suricata (
   String $ensure           = $::suricata::params::ensure, # Should probaly regex
   String $package_name     = $::suricata::params::package_name, 
+  String $user             = $::suricata::params::user,
   String $config_dir       = $::suricata::params::config_dir,
   String $service_ensure   = $::suricata::params::service_ensure,
   Boolean $service_enable  = $::suricata::params::service_enable,
