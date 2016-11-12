@@ -9,10 +9,9 @@ class suricata::service {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0655',
+    mode    => '0644',
     content => epp('suricata/suricata.service.epp'),
     notify  => Exec['Daemon-reload'],
-    before  => Service['suricata'],
   }
 
   exec { 'Daemon-reload':
