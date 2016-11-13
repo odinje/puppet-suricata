@@ -4,54 +4,7 @@
 #
 # Suricata configuration file.
 #
-##
-## Step 1: inform Suricata about your network
-##
+#
 
-vars:
-  # more specifc is better for alert accuracy and performance
-  <%= $suricata::config_vars.to_yaml %>
-
-##
-## Step 2: select the rules to enable or disable
-##
-
-default-rule-path: <%= $::suricata::rule_path -%>
-<%= $::suricata::enabled_rules.to_yaml %>
-
-classification-file: <%= "${::suricata::config_dir}/${::suricata::classification_filename}" %>
-reference-config-file: <%= "${::suricata::config_dir}/${::suricata::reference_filename}" %> 
-<% if $::suricata::threshold_filename { %>
-threshold-file: <%= "${::suricata::config_dir}/${::suricata::threshold_filename}" %> 
-<% } %>
-
-##
-## Step 3: select outputs to enable
-##
-default-log-dir: <%= $::suricata::log_dir -%>
-
-stats:
-  enabled: <%= $::suricata::stats_enabled -%>
-  interval: <%= $::suricata::stats_interval -%>
-
-outputs:
-  <% $suricata::config_output.each |$output_key, $output_hash| { %>
-  <%= "- ${output_key}:" %>
-  <% $output_hash.each |$key, $value| { -%>
-  <%= "${key}: \"${value}\"" %>
-  <% $value.each | $nested_key, $nested_value| { -%>
-  <%= "- ${nested_key}:" %>
-  <% $nested_value.each |$nested2_key, $nested2_value| { -%>
-  <%= "${nested2_key}: ${nested2_value} " %>
-  <% $nested2_value.each |$nested3_key, $nested3_value| { -%>
-  <%= "${nested3_key}: ${nested3_value}" %>
-  <% } %>
-  <% } %>
-  <% } %>
-  <% } %>
-  <% } %>
-
-  
-logging:
-
+<%= $::suricata::config.to_yaml %>
 

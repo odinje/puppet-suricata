@@ -7,6 +7,8 @@ class suricata::params {
   $service_ensure   = 'running'
   $service_enable   = true
   $service_provider = 'systemd'
+  
+  $config      = parseyaml("suricata/data/suricata.yaml")
 
   $config_vars = {
     'address-groups' => {

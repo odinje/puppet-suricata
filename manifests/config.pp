@@ -18,7 +18,7 @@ class suricata::config {
     owner   => $::suricata::user,
     group   => 'root',
     mode    => '0600',
-    content => epp('suricata/suricata.yaml.epp'),
+    content => $::suricata::config.to_yaml,
     notify  => Service['suricata'],
     require => User['suricata'],
   }

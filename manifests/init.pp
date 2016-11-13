@@ -23,6 +23,7 @@ class suricata (
   String $service_ensure               = $::suricata::params::service_ensure,
   Boolean $service_enable              = $::suricata::params::service_enable,
   String $service_provider             = $::suricata::params::service_provider,
+  Hash $config                         = lookup("suricata::config"),
   Hash $config_vars                    = $::suricata::params::config_vars,
   Hash $config_output                  = $::suricata::params::config_output,
   String $rule_path                    = $::suricata::params::rule_path,

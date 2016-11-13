@@ -10,11 +10,11 @@ Puppet::Functions.create_function(:to_yaml) do
   end
 
   def hash_to_yaml(hash)
-    hash.to_yaml
+    hash.to_yaml( :Indent => 4, :UseHeader => true, :UseVersion => true )
   end
 
   def array_to_yaml(array)
-    array.to_yaml
+    array.to_yaml( :Indent => 4, :UseHeader => true, :UseVersion => true )
   end
 end
 
