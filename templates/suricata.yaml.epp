@@ -10,7 +10,7 @@
 
 vars:
   # more specifc is better for alert accuracy and performance
-  <% =$suricata::config_vars.to_yaml %>
+  <%= $suricata::config_vars.to_yaml %>
 
 ##
 ## Step 2: select the rules to enable or disable
