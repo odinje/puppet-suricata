@@ -24,6 +24,7 @@ class suricata (
   Boolean $service_enable              = $::suricata::params::service_enable,
   String $service_provider             = $::suricata::params::service_provider,
   Hash $config_vars                    = $::suricata::params::config_vars,
+  Hash $config_output                  = $::suricata::params::config_output,
   String $rule_path                    = $::suricata::params::rule_path,
   Array[String] $enabled_rules         = $::suricata::params::enabled_rules,
   String $classification_filename      = $::suricata::params::classification_filename,

@@ -33,3 +33,33 @@ reference-config-file: <%= "${::suricata::config_dir}/${::suricata::reference_fi
 threshold-file: <%= "${::suricata::config_dir}/${::suricata::threshold_filename}" %> 
 <% } %>
 
+##
+## Step 3: select outputs to enable
+##
+default-log-dir: <%= $::suricata::log_dir -%>
+
+stats:
+  enabled: <%= $::suricata::stats_enabled -%>
+  interval: <%= $::suricata::stats_interval -%>
+
+outputs:
+  <% $suricata::config_output.each |$output_key, $output_hash| { %>
+  <%= "- ${output_key}:" %>
+  <% $output_hash.each |$key, $value| { -%>
+  <%= "${key}: \"${value}\"" %>
+  <% $value.each | $nested_key, $nested_value| { -%>
+  <%= "- ${nested_key}:" %>
+  <% $nested_value.each |$nested2_key, $nested2_value| { -%>
+  <%= "${nested2_key}: ${nested2_value} " %>
+  <% $nested2_value.each |$nested3_key, $nested3_value| { -%>
+  <%= "${nested3_key}: ${nested3_value}" %>
+  <% } %>
+  <% } %>
+  <% } %>
+  <% } %>
+  <% } %>
+
+  
+logging:
+
+

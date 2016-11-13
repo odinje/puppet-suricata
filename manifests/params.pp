@@ -47,4 +47,66 @@ class suricata::params {
   $reference_filename      = 'reference.config'
   $threshold_filename      = undef
 
+  $log_dir = '/var/log/suricata'
+
+  $stats_enabled   = 'yes'
+  $stats_interval  = 8
+
+  $config_output = {
+    'fast'       => {
+      'enabled'  => 'yes',
+      'filename' => 'regular',
+      'append'   => 'yes'
+    },
+    'eve-log'    => {
+      'enabled'  => 'yes',
+      'filetype' => 'regular',
+      'filename' => 'eve.json',
+      'types'         => {
+        'alert'       => {
+          'http'      => 'yes',
+          'tls'       => 'yes',
+          'ssh'       => 'yes',
+          'smtp'      => 'yes',
+          'xff'       => {
+            'enabled' => 'no',
+            'mode'    => 'extra data',
+            'deployment'  => 'reverse',
+            'header'      => 'X-Forwarded-For'
+          },
+        },
+        'http'       => {
+          'extended' => 'yes'
+        },
+        'dns'      => {
+          'query'  => 'yes',
+          'answer' => 'yes'
+        },
+        'tls'        => {
+          'extended' => 'yes'
+        },
+        'files'         => {
+          'force-magic' => 'no',
+          'force-md5'   => 'no'
+        },
+        'smtp' => {
+        },
+        'ssh' => {
+        },
+        'stats'     => {
+          'totals'  => 'yes',
+          'threads' => 'no',
+          'deltas'  => 'no'
+        },
+        'flow' => {
+        },
+      },
+    },
+    'stats'      => {
+      'enabled'  => 'yes',
+      'filename' => 'stats.log',
+      'totals'   => 'yes',
+      'threads'  => 'no'
+    }
+  }
 }
