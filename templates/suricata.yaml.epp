@@ -10,22 +10,14 @@
 
 vars:
   # more specifc is better for alert accuracy and performance
-  <% $suricata::config_vars.each |$var_key, $var_hash| { %>
-  <%= "${var_key}:" %>
-  <% $var_hash.each |$key, $value| { -%>
-  <%= "${key}: \"${value}\"" %>
-  <% } %>
-  <% } %>
-
+  <% =$suricata::config_vars.to_yaml %>
 
 ##
 ## Step 2: select the rules to enable or disable
 ##
 
 default-rule-path: <%= $::suricata::rule_path -%>
-<% $::suricata::enabled_rules.each |$rule| { -%>
- <%= "- ${rule}" %>
-<% } %>
+<%= $::suricata::enabled_rules.to_yaml %>
 
 classification-file: <%= "${::suricata::config_dir}/${::suricata::classification_filename}" %>
 reference-config-file: <%= "${::suricata::config_dir}/${::suricata::reference_filename}" %> 
