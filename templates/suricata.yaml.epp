@@ -23,7 +23,6 @@ vars:
 ##
 
 default-rule-path: <%= $::suricata::rule_path -%>
-rule-files: 
 <% $::suricata::enabled_rules.each |$rule| { -%>
  <%= "- ${rule}" %>
 <% } %>
