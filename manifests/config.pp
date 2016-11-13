@@ -24,12 +24,12 @@ class suricata::config {
   
   concat::fragment { "suricata.yaml_header":
     target  => "${::suricata::config_dir}/suricata.yaml",
-    content => '#MANAGED BY PUPPET',
+    content => '#MANAGED BY PUPPET\n\n',
     order   => '01',
   }
   concat::fragment { "YAML_version_header_hack":
     target  => "${::suricata::config_dir}/suricata.yaml",
-    content => '%YAML 1.1',
+    content => '%YAML 1.1\n',
     order   => '02',
   }
   concat::fragment { "suricata.yaml":
