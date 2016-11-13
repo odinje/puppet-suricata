@@ -13,13 +13,29 @@ class suricata::config {
     system => true,
   }
 
-  file { "${::suricata::config_dir}/suricata.yaml":
-    ensure  => file,
+  concat { "${::suricata::config_dir}/suricata.yaml":
+    ensure  => present,
     owner   => $::suricata::user,
     group   => 'root',
     mode    => '0600',
-    content => $::suricata::config.to_yaml,
     notify  => Service['suricata'],
     require => User['suricata'],
   }
+  
+  concat::fragment { "suricata.yaml_header":
+    target  => "${::suricata::config_dir}/suricata.yaml",
+    content => '#MANAGED BY PUPPET',
+    order   => '01',
+  }
+  concat::fragment { "YAML_version_header_hack":
+    target  => "${::suricata::config_dir}/suricata.yaml",
+    content => '%YAML 1.1',
+    order   => '02',
+  }
+  concat::fragment { "suricata.yaml":
+    target  => "${::suricata::config_dir}/suricata.yaml",
+    content => $::suricata::config.to_yaml,
+    order   => '03',
+  }
+
 }

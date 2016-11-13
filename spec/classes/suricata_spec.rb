@@ -17,7 +17,7 @@ describe 'suricata' do
 
   it do
     is_expected.to contain_file('/etc/suricata/suricata.yaml').with({
-      'ensure' => 'file',
+      'ensure' => 'present',
       'owner'  => 'suricata',
       'group'  => 'root',
       'mode'   => '0600',
