@@ -16,3 +16,21 @@ vars:
   <%= "${key}: \"${value}\"" %>
   <% } %>
   <% } %>
+
+
+##
+## Step 2: select the rules to enable or disable
+##
+
+default-rule-path: <%= $::suricata::rule_path -%>
+rule-files: 
+<% $::suricata::enabled_rules.each |$rule| { %>
+<%= "- ${rule}" %>
+<% } %>
+
+classification-file: <%= "${::suricata::config_dir}/${::suricata::classification_filename}" %>
+reference-config-file: <%= "${::suricata::config_dir}/${::suricata::reference_filename}" %> 
+<% if $::suricata::threshold_filename { %>
+  threshold-file: <%= "${::suricata::config_dir}/${::suricata::threshold_filename}" %> 
+<% } %>
+

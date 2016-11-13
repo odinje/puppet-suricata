@@ -1,5 +1,5 @@
 class suricata::config {
-  
+
   user { $::suricata::user:
     ensure  => present,
     system  => true,

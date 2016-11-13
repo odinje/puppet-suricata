@@ -34,4 +34,17 @@ class suricata::params {
       'MODBUS_PORTS'    => '502'
     }
   }
+
+  $rule_path     = '/etc/suricata/rules'
+  $enabled_rules = [
+    'app-layer-events.rules',
+    'decoder-events.rules',
+    'dns-events.rules',
+    'http-events.rules',
+  ]
+
+  $classification_filename = 'classification.config'
+  $reference_filename      = 'reference.config'
+  $threshold_filename      = undef
+
 }
