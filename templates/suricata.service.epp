@@ -1,11 +1,11 @@
+# This file is managed by Puppet. DO NOT EDIT.
 [Unit]
 Description=Suricata Intrusion Detection Service
 After=syslog.target network-online.target
 
 
 [Service]
-ExecStart=/sbin/suricata -c <%= "${::suricata::config_dir}/${::suricata::config_name}" %> <% if $::suricata::interfaces { %> <%= $::suricata::interfaces.join('-i ') %> <% } %>
-User=<%= $::suricata::user %>
+ExecStart=<%= $::suricata::exec_path %> -c <%= "${::suricata::config_dir}/${::suricata::config_name}" %> <% if $::suricata::interfaces { %> -i <%= $::suricata::interfaces.join(' -i ') %> <% } %> --user <%= $::suricata::user %>
 
 [Install]
 WantedBy=multi-user.target

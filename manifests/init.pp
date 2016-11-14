@@ -24,6 +24,7 @@ class suricata (
   String $service_ensure               = $::suricata::params::service_ensure,
   Boolean $service_enable              = $::suricata::params::service_enable,
   String $service_provider             = $::suricata::params::service_provider,
+  String $exec_path                    = $::suricata::params::exec_path,
   Optional[Array[String]] $interfaces  = lookup({'name' => 'suricata::interfaces', 'default_value' => undef}),
   Boolean $base_config_enabled         = true,
   Optional[Hash] $config               = lookup({'name' => 'suricata::config', 'default_value' => undef}),

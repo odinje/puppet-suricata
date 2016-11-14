@@ -8,5 +8,7 @@ class suricata::params {
   $service_ensure   = 'running'
   $service_enable   = true
   $service_provider = 'systemd'
-  
+
+  $exec_path = '/sbin/suricata'
+
 }
