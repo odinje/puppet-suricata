@@ -34,7 +34,7 @@ class suricata::config {
   }
   concat::fragment { "suricata.yaml":
     target  => "${::suricata::config_dir}/suricata.yaml",
-    content => $::suricata::config.to_yaml,
+    content => $::suricata::master_config.to_yaml,
     order   => '03',
   }
 
