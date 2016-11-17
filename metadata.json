@@ -12,6 +12,14 @@
     {"name":"puppetlabs-concat","version_requirement":">= 2.2.0"},
     {"name":"stahnma-epel","version_requirement":">= 1.2.2"}
   ],
+  "operatingsystem_support": [
+    { 
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
   "data_provider": "hiera"
 }
 
