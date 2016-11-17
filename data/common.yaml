@@ -17,9 +17,7 @@ suricata::base_config:
   vars:
     address-groups:
       HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
-      
       EXTERNAL_NET: "!$HOME_NET"
-
       HTTP_SERVERS: "$HOME_NET"
       SMTP_SERVERS: "$HOME_NET"
       SQL_SERVERS: "$HOME_NET"
@@ -64,7 +62,6 @@ suricata::base_config:
    - emerging-policy.rules
    - emerging-pop3.rules
    - emerging-rpc.rules
-   - emerging-scada.rules
    - emerging-scan.rules
    - emerging-shellcode.rules
    - emerging-smtp.rules
@@ -79,14 +76,13 @@ suricata::base_config:
    - emerging-web_server.rules
    - emerging-worm.rules
    - tor.rules
-   - http-events.rules    # available in suricata sources under rules dir
-   - smtp-events.rules    # available in suricata sources under rules dir
-   - dns-events.rules     # available in suricata sources under rules dir
-   - tls-events.rules     # available in suricata sources under rules dir
+   - http-events.rules    
+   - smtp-events.rules    
+   - dns-events.rules     
+   - tls-events.rules     
 
   classification-file: "/etc/suricata/classification.config"
   reference-config-file: "/etc/suricata/reference.config"
-
   default-log-dir: "/var/log/suricata"
 
   stats:
@@ -105,100 +101,109 @@ suricata::base_config:
         filename: eve.json
         types:
           - alert:
-              http: yes                # enable dumping of http fields
-              tls: yes                 # enable dumping of tls fields
-              ssh: yes                 # enable dumping of ssh fields
-              smtp: yes                # enable dumping of smtp fields
-              dnp3: yes                # enable dumping of DNP3 fields
+              http: yes                
+              tls: yes                 
+              ssh: yes                 
+              smtp: yes                
+              dnp3: yes                
               tagged-packets: yes
+
           - http:
-              extended: yes     # enable this for extended logging information
+              extended: yes
+
           - dns:
-              query: yes     # enable logging of DNS queries
-              answer: yes    # enable logging of DNS answers
+              query: yes     
+              answer: yes
+
           - tls:
-              extended: yes     # enable this for extended logging information
+              extended: yes
+
           - files:
-              force-magic: no   # force logging magic on all logged files
-          #- drop:
-          #    alerts: yes      # log alerts that caused drops
-          #    flows: all       # start or all: 'start' logs only a single drop
-          #                     # per flow direction. All logs each dropped pkt.
+              force-magic: no
+
           - smtp:
           - ssh
           - stats:
-              totals: yes       # stats for all threads merged together
-              threads: no       # per thread stats
-              deltas: no        # include delta values
+              totals: yes
+              threads: no
+              deltas: no
+
           - flow
+
     - http-log:
         enabled: no
         filename: http.log
         append: yes
+
     - tls-log:
-        enabled: no  # Log TLS connections.
-        filename: tls.log # File to store TLS logs.
+        enabled: no  
+        filename: tls.log
         append: yes
+
     - tls-store:
         enabled: no
+
     - dns-log:
         enabled: no
         filename: dns.log
         append: yes
+
     - pcap-log:
         enabled: no
         filename: log.pcap
         limit: 1000mb
         max-files: 2000
-        mode: normal # normal, multi or sguil.
-        use-stream-depth: no #If set to "yes" packets seen after reaching stream inspection depth are ignored. "no" logs all packets
-        honor-pass-rules: no # If set to "yes", flows in which a pass rule matched will stopped being logged.
-    - alert-debug:
-        enabled: no
-        filename: alert-debug.log
-        append: yes
+        mode: normal 
+        use-stream-depth: no 
+        honor-pass-rules: no
+
     - alert-prelude:
         enabled: no
         profile: suricata
         log-packet-content: no
         log-packet-header: yes
+
     - stats:
         enabled: yes
         filename: stats.log
-        totals: yes       # stats for all threads merged together
-        threads: no       # per thread stats
+        totals: yes
+        threads: no
+
     - syslog:
         enabled: no
-        # reported identity to syslog. If ommited the program name (usually
-        # suricata) will be used.
-        #identity: "suricata"
         facility: local5
+
     - drop:
         enabled: no
         filename: drop.log
         append: yes
+
     - file-store:
-        enabled: no       # set to yes to enable
-        log-dir: files    # directory to store the files
-        force-magic: no   # force logging magic on all stored files
-        force-filestore: no # force storing of all files
+        enabled: no       
+        log-dir: files
+        force-magic: no
+        force-filestore: no
+
     - file-log:
         enabled: no
         filename: files-json.log
         append: yes
-        force-magic: no   # force logging magic on all logged files
+        force-magic: no
+
     - tcp-data:
         enabled: no
         type: file
         filename: tcp-data.log
+
     - http-body-data:
         enabled: no
         type: file
         filename: http-data.log
+
     - lua:
         enabled: no
-        #scripts-dir: /etc/suricata/lua-output/
         scripts:
+
   logging:
     default-log-level: notice
     default-output-filter:
@@ -206,17 +211,16 @@ suricata::base_config:
     outputs:
     - console:
         enabled: yes
-        # type: json
+
     - file:
         enabled: yes
         level: info
         filename: /var/log/suricata/suricata.log
-        # type: json
+
     - syslog:
         enabled: no
         facility: local5
         format: "[%i] <%d> -- "
-        # type: json
 
   af-packet:
     - interface: eth0
@@ -224,9 +228,11 @@ suricata::base_config:
       cluster-type: cluster_flow
       defrag: yes
     - interface: default
+
   pcap:
     - interface: eth0
     - interface: default
+
   pcap-file:
     checksum-checks: auto
 
@@ -236,12 +242,16 @@ suricata::base_config:
         enabled: yes
         detection-ports:
           dp: 443
+
       dcerpc:
         enabled: yes
+
       ftp:
         enabled: yes
+
       ssh:
         enabled: yes
+
       smtp:
         enabled: yes
         mime:
@@ -251,27 +261,34 @@ suricata::base_config:
           header-value-depth: 2000
           extract-urls: yes
           body-md5: no
+
         inspected-tracker:
           content-limit: 100000
           content-inspect-min-size: 32768
           content-inspect-window: 4096
+
       imap:
         enabled: detection-only
+
       msn:
         enabled: detection-only
+
       smb:
         enabled: yes
         detection-ports:
           dp: 139
+
       dns:
         tcp:
           enabled: yes
           detection-ports:
             dp: 53
+
         udp:
           enabled: yes
           detection-ports:
             dp: 53
+
       http:
         enabled: yes
         libhtp:
@@ -289,21 +306,6 @@ suricata::base_config:
              double-decode-query: no
 
            server-config:
-      modbus:
-        enabled: no
-        detection-ports:
-          dp: 502
-        stream-depth: 0
-      dnp3:
-        enabled: no
-        detection-ports:
-          dp: 20000
-
-      enip:
-        enabled: no
-        detection-ports:
-          dp: 44818
-          sp: 44818
 
   asn1-max-frames: 256
 
@@ -340,21 +342,20 @@ suricata::base_config:
     vista: []
     windows2k3: []
 
-
   defrag:
     memcap: 32mb
     hash-size: 65536
-    trackers: 65535 # number of defragmented flows to follow
-    max-frags: 65535 # number of fragments to keep (higher than trackers)
+    trackers: 65535 
+    max-frags: 65535 
     prealloc: yes
     timeout: 60
-
 
   flow:
     memcap: 128mb
     hash-size: 65536
     prealloc: 10000
     emergency-recovery: 30
+
   vlan:
     use-for-tracking: true
 
@@ -369,6 +370,7 @@ suricata::base_config:
       emergency-established: 100
       emergency-closed: 0
       emergency-bypassed: 50
+
     tcp:
       new: 60
       established: 600
@@ -378,6 +380,7 @@ suricata::base_config:
       emergency-established: 100
       emergency-closed: 10
       emergency-bypassed: 50
+
     udp:
       new: 30
       established: 300
@@ -385,6 +388,7 @@ suricata::base_config:
       emergency-new: 10
       emergency-established: 100
       emergency-bypassed: 50
+
     icmp:
       new: 30
       established: 300
@@ -395,23 +399,26 @@ suricata::base_config:
 
   stream:
     memcap: 64mb
-    checksum-validation: yes      # reject wrong csums
-    inline: auto                  # auto will use inline mode in IPS mode, yes or no set it statically
+    checksum-validation: yes
+    inline: auto 
     reassembly:
       memcap: 256mb
-      depth: 1mb                  # reassemble 1mb into a stream
+      depth: 1mb 
       toserver-chunk-size: 2560
       toclient-chunk-size: 2560
       randomize-chunk-size: yes
+
   host:
     hash-size: 4096
     prealloc: 1000
     memcap: 32mb
+
   detect:
     profile: medium
     custom-values:
       toclient-groups: 3
       toserver-groups: 25
+
     sgh-mpm-context: auto
     inspection-recursion-limit: 3000
 
@@ -423,18 +430,21 @@ suricata::base_config:
     profiling:
       grouping:
         dump-to-disk: false
-        include-rules: false      # very verbose
+        include-rules: false 
         include-mpm-stats: false
 
   mpm-algo: auto
   spm-algo: auto
+  
   threading:
     set-cpu-affinity: no
     cpu-affinity:
       - management-cpu-set:
-          cpu: [ 0 ]  # include only these cpus in affinity settings
+          cpu: [ 0 ]  
+
       - receive-cpu-set:
-          cpu: [ 0 ]  # include only these cpus in affinity settings
+          cpu: [ 0 ]  
+
       - worker-cpu-set:
           cpu: [ "all" ]
           mode: "exclusive"
@@ -443,19 +453,16 @@ suricata::base_config:
             medium: [ "1-2" ]
             high: [ 3 ]
             default: "medium"
+
     detect-thread-ratio: 1.0
 
   profiling:
     rules:
-
       enabled: yes
       filename: rule_perf.log
       append: yes
-
       sort: avgticks
-
       limit: 100
-
       json: yes
 
     keywords:
@@ -475,7 +482,6 @@ suricata::base_config:
       append: yes
 
       csv:
-
         enabled: no
         filename: packet_stats.csv
 
@@ -490,6 +496,7 @@ suricata::base_config:
       append: yes
 
   nfq:
+
   nflog:
     - group: 2
       buffer-size: 18432
@@ -499,6 +506,7 @@ suricata::base_config:
       max-size: 20000
 
   capture:
+
   netmap:
    - interface: eth2
    - interface: default
@@ -506,48 +514,6 @@ suricata::base_config:
   pfring:
     - interface: eth0
       threads: 1
-
       cluster-id: 99
       cluster-type: cluster_flow
     - interface: default
-
-  ipfw:
-
-  napatech:
-      hba: -1
-
-      use-all-streams: yes
-
-      streams: [1, 2, 3]
-
-  mpipe:
-
-    load-balance: dynamic
-
-    iqueue-packets: 2048
-
-    inputs:
-    - interface: xgbe2
-    - interface: xgbe3
-    - interface: xgbe4
-
-
-    stack:
-      size128: 0
-      size256: 9
-      size512: 0
-      size1024: 0
-      size1664: 7
-      size4096: 0
-      size10386: 0
-      size16384: 0
-
-  cuda:
-    mpm:
-      data-buffer-size-min-limit: 0
-      data-buffer-size-max-limit: 1500
-      cudabuffer-buffer-size: 500mb
-      gpu-transfer-size: 50mb
-      batching-timeout: 2000
-      device-id: 0
-      cuda-streams: 2
