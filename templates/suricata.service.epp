@@ -5,7 +5,7 @@ After=syslog.target network-online.target
 
 
 [Service]
-ExecStart=<%= $::suricata::exec_path %> -c <%= "${::suricata::config_dir}/${::suricata::config_name}" %> <% if $::suricata::interfaces { %> -i <%= $::suricata::interfaces.join(' -i ') %> <% } %> --user <%= $::suricata::user %>
+ExecStart=<%= $::suricata::bin_path %> -c <%= "${::suricata::config_dir}/${::suricata::config_name}" %> <% if $::suricata::interfaces { %> -i <%= $::suricata::interfaces.join(' -i ') %> <% } %> --user <%= $::suricata::user %>
 
 [Install]
 WantedBy=multi-user.target

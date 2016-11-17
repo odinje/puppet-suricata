@@ -3,7 +3,7 @@ class suricata::config {
   user { $::suricata::user:
     ensure  => present,
     system  => true,
-    shell   => '/sbin/nologin',
+    shell   => $::suricata::user_shell,
     gid     => 'suricata',
     comment => 'Suricata Open Source IDS / IPS / NSM engine',
     require => Group['suricata'],

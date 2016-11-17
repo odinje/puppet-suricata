@@ -1,4 +1,18 @@
 
+suricata::ensure: "present"
+suricata::package_name: "suricata"
+suricata::config_dir: "/etc/suricata"
+suricata::config_name: "suricata.yaml"
+suricata::service_ensure: "running"
+suricata::service_enable: true
+
+suricata::manage_user: true
+suricata::user: "suricata"
+suricata::group: "suricata"
+suricata::base_config_enabled: true
+suricata::interfaces: 
+  - eth0
+
 suricata::base_config:
   vars:
     address-groups:
