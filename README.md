@@ -1,4 +1,4 @@
-# suricata
+# Puppet-Suricata
 
 #### Table of Contents
 
@@ -15,14 +15,11 @@
 
 ## Overview
 
-Install and manages the Open Source IDS / IPS / NSM engine Suricata. It works on CentOS 7 with Puppet 4.8.
+The Puppet-Suricata module installs and manages the Open Source IDS / IPS / NSM engine [Suricata](https://suricata-ids.org/).
 
 ## Module Description
 
-Suricata is a widely used IDS/NSM engine. This puppet module takes care of the whole lifecycle including installing, configuration and service managment. The goal of the module is to not limit any configuration options that Suricata provides.  
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+Suricata is a widely used IDS/NSM engine. This puppet module takes care of the whole lifecycle including installing, configuration and service managment. The goal of this puppet module is to not limit any configuration options that Suricata provides.
 
 ## Setup
 
@@ -30,17 +27,18 @@ management, etc.) this is the time to mention it.
 
 * Configuration files and directories (created and written to)
 * Packages/service/configuration files for Suricata.
-* Creating of log files
+* Log files from Suricata
 
 ### Beginning with suricata
 
-To have suricata installed with basic setup,  declare the suricata class.
+To have the Puppet-Suricata module installed with a basic setup, declare the suricata class.
 
 ```puppet
   include '::suricata'
 ``` 
 
 The Puppet modules applies a default configuration based on your operating system. By default it will use your first interface as montior interafce for Suricata and applies a minimal suricata.yaml configuration. 
+For more configuration option please see the suricata.yaml on the [Suricata Github clone repository](https://github.com/inliniac/suricata/blob/master/suricata.yaml.in) and the [Suricata Documentation](http://jasonish-suricata.readthedocs.io/en/latest/configuration/suricata-yaml.html).
 
 ## Usage
 
@@ -87,17 +85,27 @@ Name of suricata configuration file. Default value: 'suricata.yaml'
 
 ## Limitations
 
-Currently limitied to RHEL version 7.
-Tested with Puppet version 4.8
+This module is currently limitied to RHEL version 7 with Puppet version 4.8 or greater.
+Currently tested on CentOS 7 with Puppet 4.8
 
 ## Development
 
+We are happy to recieve comits as long as they follow the rules and guidelines below. If you want to fork the module somewhere else this is also fine as long as you mention or link the original module along with the documentation and code.
+
+Rules:
+
+* All code must follow the [Puppet Style Guide](https://docs.puppet.com/guides/style_guide.html).
+* Added code must pass the included tests. If you add new fuctions, please create puppet tests for these.
+* Make sure not to break any existing code or functions of this module.
+* New functions must be documented in the Github repository.
+* All commits must follow the [Github Commit Guide](https://github.com/erlang/otp/wiki/writing-good-commit-messages).
+
+
+Guide:
+
 1. Fork the repo.
-
-2. Run the tests. We only take pull requests with passing tests, and it's great to know that you have a clean slate
-
-3. Add a test for your change. Only refactoring and documentation changes require no new tests. If you are adding functionality or fixing a bug, please add a test.
-
-4. Make the test pass.
-
+2. Run the tests to verify that the module works as intended.
+3. Add new code, bugfixes and documentation if needed.
+4. Make sure that all the tests pass.
 5. Push to your fork and submit a pull request.
+6. Create an issue on Github if you have any problems.
