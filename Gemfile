@@ -7,6 +7,7 @@ gem 'puppetlabs_spec_helper', '>= 1.0.0'
 gem 'puppet-lint', '>= 1.0.0'
 gem 'facter', '>= 1.7.0'
 gem 'rspec-puppet'
+gem 'rspec-puppet-facts'
 gem 'guard-rake' #Should make development group
 
 # rspec must be v2 for ruby 1.8.7
