@@ -1,16 +1,17 @@
 class suricata::config {
-
-  user { $::suricata::user:
-    ensure  => present,
-    system  => true,
-    shell   => $::suricata::user_shell,
-    gid     => 'suricata',
-    comment => 'Suricata Open Source IDS / IPS / NSM engine',
-    require => Group['suricata'],
-  }
-  group { 'suricata':
-    ensure => present,
-    system => true,
+  if $::suricata::manage_user {
+    user { $::suricata::user:
+      ensure  => present,
+      system  => true,
+      shell   => $::suricata::user_shell,
+      gid     => $::suricata::group,
+      comment => 'Suricata Open Source IDS / IPS / NSM engine',
+      require => Group[$::suricata::group],
+    }
+    group { $::suricata::group:
+      ensure => present,
+      system => true,
+    }
   }
 
   concat { "${::suricata::config_dir}/${::suricata::config_name}":
@@ -19,10 +20,10 @@ class suricata::config {
     group   => 'root',
     mode    => '0600',
     warn    => true,
-    notify  => Service['suricata'],
+    notify  => Service[$::suricata::service_name],
     require => User[$::suricata::user],
   }
-  concat::fragment { "suricata.yaml":
+  concat::fragment { $::suricata::config_name:
     target  => "${::suricata::config_dir}/${::suricata::config_name}",
     content => $::suricata::master_config.to_yaml,
   }

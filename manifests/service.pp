@@ -1,5 +1,5 @@
 class suricata::service {
-  service { 'suricata':
+  service { $::suricata::service_name:
     ensure   => $::suricata::service_ensure,
     enable   => $::suricata::service_enable,
     provider => $::suricata::service_provider,
@@ -17,6 +17,6 @@ class suricata::service {
     command     => '/bin/systemctl daemon-reload',
     subscribe   => File['/usr/lib/systemd/system/suricata.service'],
     refreshonly => true,
-    notify      => Service['suricata'],
+    notify      => Service[$::suricata::service_name],
   }
 }

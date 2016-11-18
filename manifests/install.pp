@@ -5,9 +5,8 @@ class suricata::install {
       package { 'epel-release':
         ensure => installed,
       }
-      package { 'suricata':
+      package { $::suricata::package_name:
         ensure  => $::suricata::ensure,
-        name    => $::suricata::package_name,
         require => Package['epel-release'],
       }
     }

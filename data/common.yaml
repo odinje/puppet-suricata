@@ -3,6 +3,7 @@ suricata::ensure: "present"
 suricata::package_name: "suricata"
 suricata::config_dir: "/etc/suricata"
 suricata::config_name: "suricata.yaml"
+suricata::service_name: "suricata"
 suricata::service_ensure: "running"
 suricata::service_enable: true
 

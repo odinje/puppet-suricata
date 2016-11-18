@@ -16,25 +16,29 @@
 #
 #
 class suricata (
-  String $ensure, # Should probaly regex
+  Enum['present', 'absent'] $ensure, 
   String $package_name,
-  String $config_dir,
+  Stdlib::Absolutepath $config_dir,
   String $config_name, 
-  String $service_ensure,
+  Enum['running', 'stopped'] $service_ensure,
+  String $service_name,
   Boolean $service_enable,
-  String $service_provider,
+  String $service_provider,  # Maybe change to Enum.
   Boolean $manage_user,
   String $user,
   String $group,
-  String $user_shell,
-  String $bin_path,
+  Stdlib::Absolutepath $user_shell,
+  Stdlib::Absolutepath $bin_path,
   Optional[Array[String]] $interfaces,
   Boolean $base_config_enabled,
+  Hash $base_config,
   
+    ### START Hiera Lookups ###
   Optional[Hash] $config = {},
+   ### STOP Hiera lookups ###
+
 ) {
 
-  $base_config   = lookup('suricata::base_config')
   if $base_config_enabled and $config {
     $master_config = merge($base_config, $config)
   } elsif $base_config_enabled and ! $config {
