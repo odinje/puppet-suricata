@@ -6,12 +6,13 @@ describe 'suricata' do
       let(:facts) do
         facts
       end
-   
- 
-
 
       context 'with defaults for all parameters' do
         it { should contain_class('suricata') }
+      end
+      
+      if facts[:osfamily] == 'RedHat' 
+        it { should contain_package('epel-release').with_ensure('installed') }
       end
 
       it { should contain_package('suricata').with_ensure('present') }
@@ -27,6 +28,15 @@ describe 'suricata' do
           'group' => 'root',
           'mode'  => '0600' 
         )
+      end
+
+      if facts[:osfamily] == 'RedHat'
+        it { should contain_file('/usr/lib/systemd/system/suricata.service').with(
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+        ) }
       end
 
   #it do
