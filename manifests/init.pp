@@ -20,6 +20,7 @@ class suricata (
   String $package_name,
   Stdlib::Absolutepath $config_dir,
   String $config_name, 
+  Stdlib::Absolutepath $log_dir,
   Enum['running', 'stopped'] $service_ensure,
   String $service_name,
   Boolean $service_enable,

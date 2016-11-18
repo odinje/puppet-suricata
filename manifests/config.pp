@@ -14,6 +14,15 @@ class suricata::config {
     }
   }
 
+  file { [$::suricata::config_dir, "${::suricata::config_dir}/rules", $::suricata::log_dir]:
+    ensure  => directory,
+    owner   => $::suricata::user,
+    group   => 'root',
+    mode    => '0750',
+    require => User[$::suricata::user],
+    before  => Concat["${::suricata::config_dir}/${::suricata::config_name}"],
+  }
+
   concat { "${::suricata::config_dir}/${::suricata::config_name}":
     ensure  => present,
     owner   => $::suricata::user,
