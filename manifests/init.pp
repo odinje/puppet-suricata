@@ -16,10 +16,10 @@
 #
 #
 class suricata (
-  Enum['present', 'absent'] $ensure, 
+  Enum['present', 'absent'] $ensure,
   String $package_name,
   Stdlib::Absolutepath $config_dir,
-  String $config_name, 
+  String $config_name,
   Stdlib::Absolutepath $log_dir,
   Enum['running', 'stopped'] $service_ensure,
   String $service_name,
@@ -33,10 +33,10 @@ class suricata (
   Optional[Array[String]] $interfaces,
   Boolean $base_config_enabled,
   Hash $base_config,
-  
+
     ### START Hiera Lookups ###
   Optional[Hash] $config = {},
-   ### STOP Hiera lookups ###
+    ### STOP Hiera lookups ###
 
 ) {
 
@@ -50,9 +50,9 @@ class suricata (
     fail("${title}: Add config or enable base config")
   }
 
-  contain suricata::install
-  contain suricata::config
-  contain suricata::service
+  contain ::suricata::install
+  contain ::suricata::config
+  contain ::suricata::service
 
   Class['::suricata::install']->
   Class['::suricata::config']~>
