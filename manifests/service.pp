@@ -1,5 +1,5 @@
 class suricata::service {
-  
+
   case $::suricata::service_provider {
     'systemd': {
       $service_require = File['/usr/lib/systemd/system/suricata.service']
