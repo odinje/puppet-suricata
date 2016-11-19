@@ -40,4 +40,23 @@ class suricata::config {
     content => $::suricata::master_config.to_yaml,
   }
 
+  file { "${::suricata::config_dir}/classification.config":
+    ensure  => file,
+    owner   => $::suricata::user,
+    group   => 'root',
+    mode    => '0600',
+    content => epp('suricata/classification.config.epp'),
+    require => $usr_require,
+  }
+
+  file { "${::suricata::config_dir}/reference.config":
+    ensure  => file,
+    owner   => $::suricata::user,
+    group   => 'root',
+    mode    => '0600',
+    content => epp('suricata/reference.config.epp'),
+    require => $usr_require,
+  }
+
+
 }

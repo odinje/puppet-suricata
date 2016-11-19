@@ -30,6 +30,21 @@ describe 'suricata' do
         )
       end
 
+      it { should contain_file('/etc/suricata/classification.config').with(
+        'ensure' => 'file',
+        'owner'  => 'suricata',
+        'group'  => 'root',
+        'mode'   => '0600'
+      ) }
+      
+      it { should contain_file('/etc/suricata/reference.config').with(
+        'ensure' => 'file',
+        'owner'  => 'suricata',
+        'group'  => 'root',
+        'mode'   => '0600'
+      ) }
+
+
       if facts[:osfamily] == 'RedHat'
         it { should contain_file('/usr/lib/systemd/system/suricata.service').with(
           'ensure'  => 'file',
@@ -38,6 +53,7 @@ describe 'suricata' do
           'mode'    => '0644',
         ) }
       end
+
 
   #it do
   #  is_expected.to contain_file('/etc/suricata/suricata.yaml').with({

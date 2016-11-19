@@ -1,0 +1,7 @@
+# This file is managed by Puppet. DO NOT EDIT.
+
+<% if $::suricata::reference_config { %>
+<% $::suricata::reference_config.each |$reference| { %>
+config reference: <%= $reference %>
+<% } %>
+<% } %> 

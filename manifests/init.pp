@@ -35,7 +35,10 @@ class suricata (
   Hash $base_config,
 
     ### START Hiera Lookups ###
-  Optional[Hash] $config = {},
+  Optional[Hash] $config                 = {},
+  Optional[Hash] $classification_config  = {},
+  Optional[Hash] $reference_config       = {},
+  Optional[Hash] $threshold_config       = {},
     ### STOP Hiera lookups ###
 
 ) {

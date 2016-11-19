@@ -7,6 +7,7 @@ group :spec do
     watch(%r{^lib\/.+\.rb$})
     watch(%r{^spec\/.+\.rb$})
 		watch(%r{^manifests\/.+\.pp$})
+		watch(%r{^templates\/.+\.epp$})
   end
 end
 
