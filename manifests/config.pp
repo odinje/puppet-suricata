@@ -1,5 +1,8 @@
 class suricata::config {
+
   if $::suricata::manage_user {
+    $usr_require = User[$::suricata::user]
+
     user { $::suricata::user:
       ensure  => present,
       system  => true,
@@ -12,14 +15,14 @@ class suricata::config {
       ensure => present,
       system => true,
     }
-  }
+  } else { $usr_require = undef }
 
   file { [$::suricata::config_dir, "${::suricata::config_dir}/rules", $::suricata::log_dir]:
     ensure  => directory,
     owner   => $::suricata::user,
     group   => 'root',
     mode    => '0750',
-    require => User[$::suricata::user],
+    require => $usr_require,
     before  => Concat["${::suricata::config_dir}/${::suricata::config_name}"],
   }
 
@@ -30,7 +33,7 @@ class suricata::config {
     mode    => '0600',
     warn    => true,
     notify  => Service[$::suricata::service_name],
-    require => User[$::suricata::user],
+    require => $usr_require,
   }
   concat::fragment { $::suricata::config_name:
     target  => "${::suricata::config_dir}/${::suricata::config_name}",
