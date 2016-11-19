@@ -23,7 +23,7 @@ class suricata::config {
     group   => 'root',
     mode    => '0750',
     require => $usr_require,
-    before  => Concat["${::suricata::config_dir}/${::suricata::config_name}"],
+    before  => File["${::suricata::config_dir}/${::suricata::config_name}"],
   }
 
   file { "${::suricata::config_dir}/${::suricata::config_name}":
