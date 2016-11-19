@@ -26,18 +26,14 @@ class suricata::config {
     before  => Concat["${::suricata::config_dir}/${::suricata::config_name}"],
   }
 
-  concat { "${::suricata::config_dir}/${::suricata::config_name}":
+  file { "${::suricata::config_dir}/${::suricata::config_name}":
     ensure  => present,
     owner   => $::suricata::user,
     group   => 'root',
     mode    => '0600',
-    warn    => true,
+    content => "# This file is managed by Puppet. DO NOT EDIT.\n\n${::suricata::master_config.to_yaml}",
     notify  => Service[$::suricata::service_name],
     require => $usr_require,
-  }
-  concat::fragment { $::suricata::config_name:
-    target  => "${::suricata::config_dir}/${::suricata::config_name}",
-    content => $::suricata::master_config.to_yaml,
   }
 
   file { "${::suricata::config_dir}/classification.config":
