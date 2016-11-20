@@ -15,6 +15,43 @@ suricata::base_config_enabled: true
 suricata::interfaces: 
   - eth0
 
+suricata::classification_config:
+  - "not-suspicious,Not Suspicious Traffic,3"
+  - "not-suspicious,Not Suspicious Traffic,3"
+  - "unknown,Unknown Traffic,3"
+  - "bad-unknown,Potentially Bad Traffic, 2"
+  - "attempted-recon,Attempted Information Leak,2"
+  - "successful-recon-limited,Information Leak,2"
+  - "successful-recon-largescale,Large Scale Information Leak,2"
+  - "attempted-dos,Attempted Denial of Service,2"
+  - "successful-dos,Denial of Service,2"
+  - "attempted-user,Attempted User Privilege Gain,1"
+  - "unsuccessful-user,Unsuccessful User Privilege Gain,1"
+  - "successful-user,Successful User Privilege Gain,1"
+  - "attempted-admin,Attempted Administrator Privilege Gain,1"
+  - "successful-admin,Successful Administrator Privilege Gain,1"
+  - "rpc-portmap-decode,Decode of an RPC Query,2"
+  - "shellcode-detect,Executable code was detected,1"
+  - "string-detect,A suspicious string was detected,3"
+  - "suspicious-filename-detect,A suspicious filename was detected,2"
+  - "suspicious-login,An attempted login using a suspicious username was detected,2"
+  - "system-call-detect,A system call was detected,2"
+  - "tcp-connection,A TCP connection was detected,4"
+  - "trojan-activity,A Network Trojan was detected, 1"
+  - "unusual-client-port-connection,A client was using an unusual port,2"
+  - "network-scan,Detection of a Network Scan,3"
+  - "denial-of-service,Detection of a Denial of Service Attack,2"
+  - "non-standard-protocol,Detection of a non-standard protocol or event,2"
+  - "protocol-command-decode,Generic Protocol Command Decode,3"
+  - "web-application-activity,access to a potentially vulnerable web application,2"
+  - "web-application-attack,Web Application Attack,1"
+  - "misc-activity,Misc activity,3"
+  - "misc-attack,Misc Attack,2"
+  - "icmp-event,Generic ICMP event,3"
+  - "kickass-porn,SCORE! Get the lotion!,1"
+  - "policy-violation,Potential Corporate Privacy Violation,1"
+  - "default-login-attempt,Attempt to login by a default username and password,2"
+
 suricata::base_config:
   vars:
     address-groups:
