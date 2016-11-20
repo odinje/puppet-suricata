@@ -10,6 +10,12 @@ gem 'rspec-puppet'
 gem 'rspec-puppet-facts'
 gem 'guard-rake' #Should make development group
 
+group :system_tests do
+  gem 'beaker', :require => false
+  gem 'beaker-rspec', :require => false
+  gem 'beaker-puppet_install_helper', :require => false
+end
+
 # rspec must be v2 for ruby 1.8.7
 if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
   gem 'rspec', '~> 2.0'
