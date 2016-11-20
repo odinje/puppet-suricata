@@ -1,7 +1,7 @@
 # This file is managed by Puppet. DO NOT EDIT.
 
 <% if $::suricata::classification_config { %>
-<% $::suricata::classification_config.each |$classification| { %>
+<% $::suricata::classification_config.each |$classification| { -%>
 config classification: <%= $classification %>
 <% } %>
 <% } %> 
