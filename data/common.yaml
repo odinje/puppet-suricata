@@ -49,7 +49,7 @@ suricata::classification_config:
   - "policy-violation,Potential Corporate Privacy Violation,1"
   - "default-login-attempt,Attempt to login by a default username and password,2"
 
-suricata::reference_config
+suricata::reference_config:
   - "bugtraq http://www.securityfocus.com/bid/"
   - "bid http://www.securityfocus.com/bid/"
   - "cve http://cve.mitre.org/cgi-bin/cvename.cgi?name="
