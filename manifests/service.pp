@@ -19,7 +19,11 @@ class suricata::service {
         notify      => Service[$::suricata::service_name],
       }
     }
-    default: { notice("Your ${::suricata::service_provider} is not supported") }
+    default: {
+      $service_require = undef
+
+      notice("Your ${::suricata::service_provider} is not supported")
+    }
   }
 
   service { $::suricata::service_name:
