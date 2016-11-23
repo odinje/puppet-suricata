@@ -1,15 +1,21 @@
 # This file is managed by Puppet. DO NOT EDIT.
 
-<% if $::suricata::threshold_config { %>
-<% $::suricata::threshold_config.each |$threshold, $event_fiter, $suppress| { -%>
-<% $threshold.each |$config| { -%>
+<% if $::suricata::threshold_config { -%>
+<% $::suricata::threshold_config.each |$type, $array| { -%>
+<% if $type == 'threshold' { -%>
+<% $array.each |$config| { -%>
 threshold <%= $config %>
-<% } %>
-<% $event_fiter.each |$config| { -%>
+<% } -%>
+<% } -%>
+<% if $type == 'event_filter' { -%>
+<% $array.each |$config| { -%>
 event_filter <%= $config %>
-<% } %>
-<% $suppress.each |$config| { -%>
+<% } -%>
+<% } -%>
+<% if $type == 'suppress' { -%>
+<% $array.each |$config| { -%>
 suppress <%= $config %>
-<% } %>
-<% } %>
-<% } %> 
+<% } -%>
+<% } -%>
+<% } -%>
+<% } -%>
