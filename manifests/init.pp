@@ -36,10 +36,10 @@ class suricata (
   Optional[String] $cmd_options = undef,
 
     ### START Hiera Lookups ###
-  Optional[Hash] $config                 = {},
-  Optional[Array] $classification_config  = [],
-  Optional[Hash] $reference_config       = {},
-  Optional[Hash] $threshold_config       = {},
+  Optional[Hash] $config                  = undef,
+  Optional[Array] $classification_config  = undef,
+  Optional[Hash] $reference_config        = undef,
+  Optional[Hash] $threshold_config        = undef,
     ### STOP Hiera lookups ###
 
 ) {
