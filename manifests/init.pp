@@ -30,9 +30,10 @@ class suricata (
   String $group,
   Stdlib::Absolutepath $user_shell,
   Stdlib::Absolutepath $bin_path,
-  Optional[Array[String]] $interfaces,
   Boolean $base_config_enabled,
   Hash $base_config,
+  Optional[Array[String]] $interfaces,
+  Optional[String] $cmd_options = undef,
 
     ### START Hiera Lookups ###
   Optional[Hash] $config                 = {},
