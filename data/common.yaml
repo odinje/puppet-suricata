@@ -17,7 +17,6 @@ suricata::interfaces:
 
 suricata::classification_config:
   - "not-suspicious,Not Suspicious Traffic,3"
-  - "not-suspicious,Not Suspicious Traffic,3"
   - "unknown,Unknown Traffic,3"
   - "bad-unknown,Potentially Bad Traffic, 2"
   - "attempted-recon,Attempted Information Leak,2"
