@@ -16,7 +16,7 @@
 #
 #
 class suricata (
-  Enum['present', 'absent'] $ensure,
+  String $ensure,
   String $package_name,
   Stdlib::Absolutepath $config_dir,
   String $config_name,
