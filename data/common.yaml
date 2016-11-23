@@ -49,6 +49,28 @@ suricata::classification_config:
   - "policy-violation,Potential Corporate Privacy Violation,1"
   - "default-login-attempt,Attempt to login by a default username and password,2"
 
+suricata::reference_config
+  - "bugtraq http://www.securityfocus.com/bid/"
+  - "bid http://www.securityfocus.com/bid/"
+  - "cve http://cve.mitre.org/cgi-bin/cvename.cgi?name="
+  - "secunia http://www.secunia.com/advisories/"
+  - "arachNIDS http://www.whitehats.com/info/IDS"
+  - "McAfee http://vil.nai.com/vil/content/v_"
+  - "nessus http://cgi.nessus.org/plugins/dump.php3?id="
+  - "url http://"
+  - "et http://doc.emergingthreats.net/"
+  - "etpro http://doc.emergingthreatspro.com/"
+  - "telus http://"
+  - "osvdb http://osvdb.org/show/osvdb/"
+  - "threatexpert http://www.threatexpert.com/report.aspx?md5="
+  - "md5 http://www.threatexpert.com/report.aspx?md5="
+  - "exploitdb http://www.exploit-db.com/exploits/"
+  - "openpacket https://www.openpacket.org/capture/grab/"
+  - "securitytracker http://securitytracker.com/id?"
+  - "secunia http://secunia.com/advisories/"
+  - "xforce http://xforce.iss.net/xforce/xfdb/"
+  - "msft http://technet.microsoft.com/security/bulletin/"
+
 suricata::base_config:
   vars:
     address-groups:
