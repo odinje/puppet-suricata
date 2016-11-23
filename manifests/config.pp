@@ -54,5 +54,12 @@ class suricata::config {
     require => $usr_require,
   }
 
-
+  file { "${::suricata::config_dir}/threshold.config":
+    ensure  => file,
+    owner   => $::suricata::user,
+    group   => 'root',
+    mode    => '0600',
+    content => epp('suricata/threshold.config.epp'),
+    require => $usr_require,
+  }
 }
