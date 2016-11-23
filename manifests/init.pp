@@ -32,8 +32,8 @@ class suricata (
   Stdlib::Absolutepath $bin_path,
   Boolean $base_config_enabled,
   Hash $base_config,
-  Optional[String] $interfaces = split($::interfaces, ',')[0],
-  Optional[String] $cmd_options       = undef,
+  Optional[String] $interfaces  = split($::interfaces, ',')[0],
+  Optional[String] $cmd_options = undef,
 
     ### START Hiera Lookups ###
   Optional[Hash] $config                 = undef,
