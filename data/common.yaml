@@ -12,6 +12,7 @@ suricata::manage_user: true
 suricata::user: "suricata"
 suricata::group: "suricata"
 suricata::base_config_enabled: true
+suricata::configure_epel: false
 
 suricata::classification_config:
   - "not-suspicious,Not Suspicious Traffic,3"

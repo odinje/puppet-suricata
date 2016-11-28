@@ -2,3 +2,4 @@
 suricata::service_provider: "systemd"
 suricata::bin_path: "/sbin/suricata"
 suricata::user_shell: "/sbin/nologin"
+suricata::configure_epel: true

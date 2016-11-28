@@ -31,6 +31,7 @@ class suricata (
   Stdlib::Absolutepath $user_shell,
   Stdlib::Absolutepath $bin_path,
   Boolean $base_config_enabled,
+  Boolean $configure_epel,
   Hash $base_config,
   Optional[String] $interfaces  = split($::interfaces, ',')[0],
   Optional[String] $cmd_options = undef,

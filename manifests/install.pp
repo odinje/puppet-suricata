@@ -2,15 +2,20 @@ class suricata::install {
 
   case $::osfamily {
     'RedHat': {
-      $pkg_require = Package['epel-release']
+      if $::suricata::configure_epel {
+        $pkg_require = Package['epel-release']
 
-      package { 'epel-release':
-        ensure => installed,
-      }
-
+        package { 'epel-release':
+          ensure => installed,
+        }
+      } else { $pkg_require = false }
     }
 
-    default: { notice("Your operating system: ${::osfamily} is not support") }
+    default: {
+      $pkg_require = false
+
+      notice("Your operating system: ${::osfamily} is not support")
+    }
 
   }
 
