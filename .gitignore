@@ -6,3 +6,5 @@ spec/fixtures/manifests/
 pkg/
 log/
 .vagrant/
+.yardoc/
+doc/
