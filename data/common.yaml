@@ -11,10 +11,10 @@ suricata::service_enable: true
 suricata::manage_user: true
 suricata::user: "suricata"
 suricata::group: "suricata"
-suricata::base_config_enabled: true
+suricata::basic_configuration_enabled: true
 suricata::configure_epel: false
 
-suricata::classification_config:
+suricata::basic_classification_config:
   - "not-suspicious,Not Suspicious Traffic,3"
   - "unknown,Unknown Traffic,3"
   - "bad-unknown,Potentially Bad Traffic, 2"
@@ -50,7 +50,7 @@ suricata::classification_config:
   - "policy-violation,Potential Corporate Privacy Violation,1"
   - "default-login-attempt,Attempt to login by a default username and password,2"
 
-suricata::reference_config:
+suricata::basic_reference_config:
   - "bugtraq http://www.securityfocus.com/bid/"
   - "bid http://www.securityfocus.com/bid/"
   - "cve http://cve.mitre.org/cgi-bin/cvename.cgi?name="
@@ -72,7 +72,7 @@ suricata::reference_config:
   - "xforce http://xforce.iss.net/xforce/xfdb/"
   - "msft http://technet.microsoft.com/security/bulletin/"
 
-suricata::base_config:
+suricata::basic_main_config:
   vars:
     address-groups:
       HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"

@@ -1,7 +1,7 @@
 # This file is managed by Puppet. DO NOT EDIT.
 
-<% if $::suricata::threshold_config { -%>
-<% $::suricata::threshold_config.each |$type, $array| { -%>
+<% if $::suricata::_threshold_config { -%>
+<% $::suricata::_threshold_config.each |$type, $array| { -%>
 <% if $type == 'threshold' { -%>
 <% $array.each |$config| { -%>
 threshold <%= $config %>

@@ -31,7 +31,7 @@ class suricata::config {
     owner   => $::suricata::user,
     group   => 'root',
     mode    => '0600',
-    content => "# This file is managed by Puppet. DO NOT EDIT.\n\n${::suricata::master_config.to_yaml}",
+    content => "# This file is managed by Puppet. DO NOT EDIT.\n\n${::suricata::_main_config.to_yaml}",
     notify  => Service[$::suricata::service_name],
     require => $usr_require,
   }
