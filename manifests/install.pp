@@ -8,11 +8,11 @@ class suricata::install {
         package { 'epel-release':
           ensure => installed,
         }
-      } else { $pkg_require = false }
+      } else { $pkg_require = undef }
     }
 
     default: {
-      $pkg_require = false
+      $pkg_require = undef
 
       notice("Your operating system: ${::osfamily} is not support")
     }
