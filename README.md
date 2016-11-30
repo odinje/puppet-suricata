@@ -1,4 +1,4 @@
-# Puppet-Suricata
+ Puppet-Suricata
 
 #### Table of Contents
 
@@ -42,8 +42,40 @@ For more configuration option please see the suricata.yaml on the [Suricata Gith
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+Suricata have only class to use and this is suricata class. The class do have many configuration options, but most of them is default to a normal suricata setup. 
+
+###Just want minimal Suricata config?
+
+```puppet
+  include '::suricata'
+```
+###Using RHEL and dont want this module do install epel?
+
+```puppet
+  class { ::suricata:
+    configure_epel => false,
+  }
+```
+
+###Don't want this module to manager suricatas user, and run with your own?
+
+```puppet
+  class { ::suricata:
+    manage_user => false,
+    user        => user,
+    group       => user,
+  }
+```
+
+###Add more interfaces to listen on?
+
+Default does this module use the first interfaces found in the fact 'interfaces'.
+
+```puppet
+  class { ::suricata: 
+    interfaces => "eth0, eth1, eth2"
+  }
+```
 
 ## Reference
 
