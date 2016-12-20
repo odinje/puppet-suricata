@@ -95,14 +95,43 @@ Setting interfaces to undef will not add any interfaces to the commandline optio
 
 ###Merge your suricata configuration with the basic one this module provides?
 
+The hash below will change the configuration of the rules-files to the value below.
+
 ```puppet
-  
+  class {::suricata:
+    main_config => { 'rules-files' =>  [
+                      'emerging-attack_response.rules',
+                      'emerging-chat.rules',
+                      'emerging-current_events.rules',
+                      'emerging-dns.rules'
+                     ]
+                   }
+  }
+```
+
+This configuraiton can also be done in hiera.
+
+```puppet
+  class {::suricata: }
+```
+
+```yaml
+suricata::main_config:
+  rule-files:
+   - emerging-attack_response.rules
+   - emerging-chat.rules
+   - emerging-current_events.rules
+   - emerging-dns.rules
 ```
 
 ###Don't use the basic configuration and write the configuration from scratch
 
-```puppet
+If you don't want to merge your configuration with the modules this can be turned off. Then only the configuration you add as a hash or hiera will be used. 
 
+```puppet
+  class {::suricata:
+    basic_configuration_enabled = false,
+  }
 ```
 
 ## Reference
