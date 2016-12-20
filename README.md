@@ -67,14 +67,42 @@ Suricata have only class to use and this is suricata class. The class do have ma
   }
 ```
 
-###Add more interfaces to listen on?
+###Add more interfaces to listen on? Or dont listen on any? 
 
 Default does this module use the first interfaces found in the fact 'interfaces'.
 
 ```puppet
   class { ::suricata: 
-    interfaces => "eth0, eth1, eth2"
+    interfaces => "eth0, eth1, eth2",
   }
+```
+
+Setting interfaces to undef will not add any interfaces to the commandline options to suricata. 
+
+```puppet
+  class { ::suricata:
+    interfaces => undef,
+  }
+```
+
+###Want to add more commandline options to Suricata?
+
+```puppet
+  class {::suricata:
+    cmd_options => '--af-packet=eth0',  
+  }
+```
+
+###Merge your suricata configuration with the basic one this module provides?
+
+```puppet
+  
+```
+
+###Don't use the basic configuration and write the configuration from scratch
+
+```puppet
+
 ```
 
 ## Reference
