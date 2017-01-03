@@ -17,7 +17,7 @@ class suricata::config {
     }
   } else { $usr_require = undef }
 
-  file { [$::suricata::config_dir, "${::suricata::config_dir}/rules", $::suricata::log_dir]:
+  file { [$::suricata::config_dir, "${::suricata::config_dir}/rules", "${::suricata::config_dir}/lua-output", $::suricata::log_dir]:
     ensure  => directory,
     owner   => $::suricata::user,
     group   => 'root',
