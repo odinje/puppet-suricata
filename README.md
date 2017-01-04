@@ -109,7 +109,7 @@ The hash below will change the configuration of the rules-files to the value bel
   }
 ```
 
-This configuraiton can also be done in hiera.
+This configuration can also be done in hiera.
 
 ```puppet
   class {::suricata: }
@@ -134,6 +134,17 @@ If you don't want to merge your configuration with the modules this can be turne
   }
 ```
 
+###Add a lua script to Suricatas script folder
+
+This modules includes a resource for adding scripts. This resource adds the script to lua-output directory inside suricatas configuration directory and sets the correct permissions.
+
+```puppet
+  suricata::script { 'stats.lua':
+    ensure => 'present',
+    source => 'puppet:///modules/module/stats.lua',
+  }
+```
+
 ## Reference
 
 **Classes**
@@ -148,8 +159,11 @@ If you don't want to merge your configuration with the modules this can be turne
   * suricata::config: 
   * suricata::service:
 
-Parameters
-The following parameters are available in the ::suricata class:
+**Public Defined Classes**
+
+  * suricata::script
+
+**Parameters within suricata class**
 
 ####`ensure`
 
@@ -241,7 +255,7 @@ Default to true if os is RHEL
 
 ####`interfaces`
 
-A string of comma-separated interfaces.
+A string of comma-separated interfaces
 
 Defaults to the first interfaces found in the interface fact
 
@@ -253,21 +267,37 @@ Defaults to undef
 
 ####`main_config`
 
-A hash of suricatas main configuration options.
+A hash of suricatas main configuration options
 
 ####`classification_config`
 
-An array of suricatas classification configuration options.
+An array of suricatas classification configuration options
 
 ####`reference_config`
 
-An array of suricatas reference configuration options.
+An array of suricatas reference configuration options
 
 ####`threshold_config`
 
-An array of suricatas threshold configuration options.
+An array of suricatas threshold configuration options
 
+**Parameters within suricata::script defined type**
 
+####`source`
+
+Puppet URI to where the script is stored
+
+####`ensure`
+
+Choose whether the script should be present or absent
+
+Defaults to present
+
+####`script_name`
+
+Name of the script
+
+Default to the name of the instance
 
 ## Limitations
 
