@@ -16,13 +16,10 @@ describe 'suricata' do
       end
 
       it { should contain_package('suricata').with_ensure('present') }
-      it { should contain_user('suricata').with(
-        'ensure' => 'present',
-        'system' => 'true',
-        'shell'  => '/sbin/nologin',
-        'gid'    => 'suricata',
-       )}
+      
 
+        
+     
       it { should contain_file('/etc/suricata/classification.config').with(
         'ensure' => 'file',
         'owner'  => 'suricata',
@@ -55,7 +52,24 @@ describe 'suricata' do
           'group'  => 'root',
           'mode'   => '0600',
           })
-      end 
+      end
+
+      case facts[:osfamily]
+        when 'RedHat'
+          it { should contain_user('suricata').with(
+            'ensure' => 'present',
+            'system' => 'true',
+            'gid'    => 'suricata',
+            'shell'  => '/sbin/nologin',
+          )}
+        when 'Debian'
+          it { should contain_user('suricata').with(
+            'ensure' => 'present',
+            'system' => 'true',
+            'gid'    => 'suricata',
+            'shell'  => '/bin/false',
+          )}
+      end
     end
   end
 end

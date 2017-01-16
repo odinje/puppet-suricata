@@ -1,0 +1,5 @@
+---
+suricata::service_provider: "systemd"
+suricata::bin_path: "/usr/bin/suricata"
+suricata::user_shell: "/bin/false"
+suricata::ppa_source: "ppa:oisf/suricata-stable"

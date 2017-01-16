@@ -7,13 +7,14 @@ suricata::log_dir: "/var/log/suricata"
 suricata::service_name: "suricata"
 suricata::service_ensure: "running"
 suricata::service_enable: true
+suricata::service_provider: "systemd"
 
 suricata::manage_user: true
 suricata::user: "suricata"
 suricata::group: "suricata"
 suricata::basic_configuration_enabled: true
 suricata::configure_epel: false
-
+suricata::ppa_source: undef
 suricata::basic_classification_config:
   - "not-suspicious,Not Suspicious Traffic,3"
   - "unknown,Unknown Traffic,3"

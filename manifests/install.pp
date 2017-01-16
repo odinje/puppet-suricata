@@ -10,7 +10,16 @@ class suricata::install {
         }
       } else { $pkg_require = undef }
     }
+    'Debian': {
+      if $::operatingsystem == 'ubuntu' {
+        if $::suricata::ppa_source {
+          $pkg_require = Apt::Ppa[$::suricata::ppa_source]
 
+          include ::apt
+          apt::ppa { $::suricata::ppa_source: }
+        }
+      } else { $pkg_require = undef }
+    }
     default: {
       $pkg_require = undef
 
