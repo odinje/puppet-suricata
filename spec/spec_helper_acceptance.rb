@@ -11,7 +11,7 @@ RSpec.configure do |c|
   # Configure all nodes in nodeset
     c.before :suite do
     copy_module_to(hosts[0], :source => proj_root, :module_name => 'suricata')
-    on hosts[0], puppet('module install puppetlabs-stdlib'),
-      {:acceptable_exit_codes => [0]}
+    on hosts[0], puppet('module install puppetlabs-stdlib'), {:acceptable_exit_codes => [0]}
+    on hosts[0], puppet('module install puppetlabs-apt'), {:acceptable_exit_codes => [0]}
     end  
 end
