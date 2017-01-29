@@ -16,7 +16,9 @@ class suricata::install {
           $pkg_require = Apt::Ppa[$::suricata::ppa_source]
 
           include ::apt
-          apt::ppa { $::suricata::ppa_source: }
+          apt::ppa { $::suricata::ppa_source: 
+            package_manage => true,
+          }
         }
       } else { $pkg_require = undef }
     }
