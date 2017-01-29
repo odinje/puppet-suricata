@@ -2,9 +2,15 @@ class suricata::service {
 
   case $::suricata::service_provider {
     'systemd': {
-      $service_require = File['/usr/lib/systemd/system/suricata.service']
+      
+      $systemd_path = $::operatingsystem ? {
+        /(Ubuntu|Debian)/ => '/lib/systemd/system',
+        default           => '/usr/lib/systemd/system',
+      }
 
-      file { '/usr/lib/systemd/system/suricata.service':
+      $service_require = File["${systemd_path}/suricata.service"]
+
+      file { "${systemd_path}/suricata.service":
         ensure  => file,
         owner   => 'root',
         group   => 'root',
@@ -14,7 +20,7 @@ class suricata::service {
 
       exec { 'Daemon-reload':
         command     => '/bin/systemctl daemon-reload',
-        subscribe   => File['/usr/lib/systemd/system/suricata.service'],
+        subscribe   => File["${systemd_path}/suricata.service"],
         refreshonly => true,
         notify      => Service[$::suricata::service_name],
       }
