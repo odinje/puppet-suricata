@@ -301,7 +301,7 @@ Default to the name of the instance
 
 ## Limitations
 
-This module is currently limitied to RHEL version 7 with Puppet version 4.8 or greater.
+This module is currently limitied to RHEL version 7, Debian 8 and Ubuntu 16.04 with Puppet version 4.8 or greater.
 Currently tested on CentOS 7 with Puppet 4.8
 
 ## Development
