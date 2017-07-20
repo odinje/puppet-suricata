@@ -21,7 +21,7 @@ class suricata::config {
     ensure  => directory,
     owner   => $::suricata::user,
     group   => 'root',
-    mode    => '0750',
+    mode    => '0755',
     require => $usr_require,
     before  => File["${::suricata::config_dir}/${::suricata::config_name}"],
   }
