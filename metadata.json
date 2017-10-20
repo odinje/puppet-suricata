@@ -1,6 +1,6 @@
 {
   "name": "devsec-suricata",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Bendik Hagen og Odin Jenseg",
   "summary": "Setup and Configuration of Suricata IDS",
   "license": "Apache-2.0",

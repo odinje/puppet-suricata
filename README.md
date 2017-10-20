@@ -77,11 +77,11 @@ Default does this module use the first interfaces found in the fact 'interfaces'
   }
 ```
 
-Setting interfaces to undef will not add any interfaces to the commandline options to suricata. 
+Setting interfaces to false will not add any interfaces to the commandline options to suricata. 
 
 ```puppet
   class { ::suricata:
-    interfaces => undef,
+    interfaces => false,
   }
 ```
 
