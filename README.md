@@ -42,14 +42,14 @@ For more configuration option please see the suricata.yaml on the [Suricata Gith
 
 ## Usage
 
-Suricata have only class to use and this is suricata class. The class do have many configuration options, but most of them is default to a normal suricata setup. 
+This module includes a "Suricata" class with default options normal to a standard suricata setup. Below are some examples to change the default configuration.
 
 ###Just want minimal Suricata config?
 
 ```puppet
   include '::suricata'
 ```
-###Using RHEL and dont want this module do install epel?
+###Using RHEL and dont want this module to install the epel repository?
 
 ```puppet
   class { ::suricata:
@@ -57,7 +57,7 @@ Suricata have only class to use and this is suricata class. The class do have ma
   }
 ```
 
-###Don't want this module to manager suricatas user, and run with your own?
+###Don't want this module to manage suricatas user, and run suricata as another user?
 
 ```puppet
   class { ::suricata:
@@ -69,7 +69,7 @@ Suricata have only class to use and this is suricata class. The class do have ma
 
 ###Add more interfaces to listen on? Or dont listen on any? 
 
-Default does this module use the first interfaces found in the fact 'interfaces'.
+By default this module uses the first interfaces found in the fact 'interfaces', you can change this to listen on specified interfaces like eth0, eth1, eth2.
 
 ```puppet
   class { ::suricata: 
@@ -136,7 +136,7 @@ If you don't want to merge your configuration with the modules this can be turne
 
 ###Add a lua script to Suricatas script folder
 
-This modules includes a resource for adding scripts. This resource adds the script to lua-output directory inside suricatas configuration directory and sets the correct permissions.
+This module includes a resource for adding scripts. This resource adds the script to lua-output directory inside suricatas configuration directory and sets the correct permissions.
 
 ```puppet
   suricata::script { 'stats.lua':
@@ -301,12 +301,12 @@ Default to the name of the instance
 
 ## Limitations
 
-This module is currently limitied to RHEL version 7, Debian 8 and Ubuntu 16.04 with Puppet version 4.8 or greater.
+This module is currently limitied to RHEL/CentOS version 7, Debian 8 and Ubuntu 16.04 with Puppet version 4.8 or greater.
 Currently tested on CentOS 7 with Puppet 4.8
 
 ## Development
 
-We are happy to recieve comits as long as they follow the rules and guidelines below. If you want to fork the module somewhere else this is also fine as long as you mention or link the original module along with the documentation and code.
+We are happy to recieve commits as long as they follow the rules and guidelines below. If you want to fork the module somewhere else this is also fine as long as you mention or link the original module along with the documentation and code.
 
 Rules:
 
