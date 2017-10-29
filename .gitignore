@@ -8,3 +8,5 @@ log/
 .vagrant/
 .yardoc/
 doc/
+*.swp
+    *.swo
