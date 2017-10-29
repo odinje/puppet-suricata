@@ -45,12 +45,12 @@ For more configuration option please see the suricata.yaml on the [Suricata Gith
 
 This module includes a "Suricata" class with default options normal to a standard suricata setup. Below are some examples to change the default configuration.
 
-### Just want minimal Suricata config?
+#### Just want minimal Suricata config?
 
 ```puppet
   include '::suricata'
 ```
-### Using RHEL and dont want this module to install the epel repository?
+#### Using RHEL and dont want this module to install the epel repository?
 
 ```puppet
   class { ::suricata:
@@ -58,7 +58,7 @@ This module includes a "Suricata" class with default options normal to a standar
   }
 ```
 
-### Don't want this module to manage suricatas user, and run suricata as another user?
+#### Don't want this module to manage suricatas user, and run suricata as another user?
 
 ```puppet
   class { ::suricata:
@@ -68,7 +68,7 @@ This module includes a "Suricata" class with default options normal to a standar
   }
 ```
 
-### Add more interfaces to listen on? Or dont listen on any? 
+#### Add more interfaces to listen on? Or dont listen on any? 
 
 By default this module uses the first interfaces found in the fact 'interfaces', you can change this to listen on specified interfaces like eth0, eth1, eth2.
 
@@ -86,7 +86,7 @@ Setting interfaces to false will not add any interfaces to the commandline optio
   }
 ```
 
-### Want to add more commandline options to Suricata?
+#### Want to add more commandline options to Suricata?
 
 ```puppet
   class {::suricata:
@@ -94,7 +94,7 @@ Setting interfaces to false will not add any interfaces to the commandline optio
   }
 ```
 
-### Merge your suricata configuration with the basic one this module provides?
+#### Merge your suricata configuration with the basic one this module provides?
 
 The hash below will change the configuration of the rules-files to the value below.
 
@@ -125,7 +125,7 @@ suricata::main_config:
    - emerging-dns.rules
 ```
 
-### Don't use the basic configuration and write the configuration from scratch
+#### Don't use the basic configuration and write the configuration from scratch
 
 If you don't want to merge your configuration with the modules this can be turned off. Then only the configuration you add as a hash or hiera will be used. 
 
@@ -135,7 +135,7 @@ If you don't want to merge your configuration with the modules this can be turne
   }
 ```
 
-### Add a lua script to Suricatas script folder
+#### Add a lua script to Suricatas script folder
 
 This module includes a resource for adding scripts. This resource adds the script to lua-output directory inside suricatas configuration directory and sets the correct permissions.
 
