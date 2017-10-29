@@ -1,4 +1,5 @@
- Puppet-Suricata
+Puppet-Suricata
+========
 
 #### Table of Contents
 
@@ -44,12 +45,12 @@ For more configuration option please see the suricata.yaml on the [Suricata Gith
 
 This module includes a "Suricata" class with default options normal to a standard suricata setup. Below are some examples to change the default configuration.
 
-###Just want minimal Suricata config?
+### Just want minimal Suricata config?
 
 ```puppet
   include '::suricata'
 ```
-###Using RHEL and dont want this module to install the epel repository?
+### Using RHEL and dont want this module to install the epel repository?
 
 ```puppet
   class { ::suricata:
@@ -57,7 +58,7 @@ This module includes a "Suricata" class with default options normal to a standar
   }
 ```
 
-###Don't want this module to manage suricatas user, and run suricata as another user?
+### Don't want this module to manage suricatas user, and run suricata as another user?
 
 ```puppet
   class { ::suricata:
@@ -67,7 +68,7 @@ This module includes a "Suricata" class with default options normal to a standar
   }
 ```
 
-###Add more interfaces to listen on? Or dont listen on any? 
+### Add more interfaces to listen on? Or dont listen on any? 
 
 By default this module uses the first interfaces found in the fact 'interfaces', you can change this to listen on specified interfaces like eth0, eth1, eth2.
 
@@ -85,7 +86,7 @@ Setting interfaces to false will not add any interfaces to the commandline optio
   }
 ```
 
-###Want to add more commandline options to Suricata?
+### Want to add more commandline options to Suricata?
 
 ```puppet
   class {::suricata:
@@ -93,7 +94,7 @@ Setting interfaces to false will not add any interfaces to the commandline optio
   }
 ```
 
-###Merge your suricata configuration with the basic one this module provides?
+### Merge your suricata configuration with the basic one this module provides?
 
 The hash below will change the configuration of the rules-files to the value below.
 
@@ -124,7 +125,7 @@ suricata::main_config:
    - emerging-dns.rules
 ```
 
-###Don't use the basic configuration and write the configuration from scratch
+### Don't use the basic configuration and write the configuration from scratch
 
 If you don't want to merge your configuration with the modules this can be turned off. Then only the configuration you add as a hash or hiera will be used. 
 
@@ -134,7 +135,7 @@ If you don't want to merge your configuration with the modules this can be turne
   }
 ```
 
-###Add a lua script to Suricatas script folder
+### Add a lua script to Suricatas script folder
 
 This module includes a resource for adding scripts. This resource adds the script to lua-output directory inside suricatas configuration directory and sets the correct permissions.
 
@@ -165,135 +166,135 @@ This module includes a resource for adding scripts. This resource adds the scrip
 
 **Parameters within suricata class**
 
-####`ensure`
+#### `ensure`
 
 Choose whether suricata should be present, absent, latest or version
 Defaults to 'present'
 
-####`package_name`
+#### `package_name`
 
 Name of suricata package in repo
 
 Defaults to 'suricata'
 
-####`config_dir`
+#### `config_dir`
 
 Directory of configuration files
 
 Defaults to '/etc/suricata'
 
-####`config_name`
+#### `config_name`
 
 Name of suricata main configuration
 
 Defaults to 'suricata.yaml'
 
-####`log_dir`
+#### `log_dir`
 Directory of suricatas log files
 
 Defaults to '/var/log/suricata'
 
-####`service_ensure`
+#### `service_ensure`
 
 Choose whether suricata service is running or stopped
 
 Defaults to 'running'
 
-####`service_enable`
+#### `service_enable`
 
 Choose to enable suricata at startup or not
 
 Defaults to true
 
-####`service_provider`
+#### `service_provider`
 
 Which service provider suricatas service will use
 
 Default depends on os
 
-####`manage_user`
+#### `manage_user`
 
 Choose wheter this module will manage the user
 
 Defaults to true
 
-####`user`
+#### `user`
 
 Name of user that suricata is running as and owner of configuration files
 
 Defaults to 'suricata'
 
-####`group`
+#### `group`
 
 Name of users group
 
 Defaults to 'suricata'
 
-####`user_shell`
+#### `user_shell`
 
 Path to user shell
 
 Default depends on os
 
-####`bin_path`
+#### `bin_path`
 
 Path to suricatas binary file
 
 Default depends on os
 
-####`basic_configuration_enabled`
+#### `basic_configuration_enabled`
 
 Choose whether to apply the modules included basic configuration
 
 Defaults to true
 
-####`configure_epel`
+#### `configure_epel`
 
 Choose whether this module will install epel from offical repository
 
 Default to true if os is RHEL 
 
-####`interfaces`
+#### `interfaces`
 
 A string of comma-separated interfaces
 
 Defaults to the first interfaces found in the interface fact
 
-####`cmd_options`
+#### `cmd_options`
 
 A string of additonal commandline options
 
 Defaults to undef
 
-####`main_config`
+#### `main_config`
 
 A hash of suricatas main configuration options
 
-####`classification_config`
+#### `classification_config`
 
 An array of suricatas classification configuration options
 
-####`reference_config`
+#### `reference_config`
 
 An array of suricatas reference configuration options
 
-####`threshold_config`
+#### `threshold_config`
 
 An array of suricatas threshold configuration options
 
 **Parameters within suricata::script defined type**
 
-####`source`
+#### `source`
 
 Puppet URI to where the script is stored
 
-####`ensure`
+#### `ensure`
 
 Choose whether the script should be present or absent
 
 Defaults to present
 
-####`script_name`
+#### `script_name`
 
 Name of the script
 
