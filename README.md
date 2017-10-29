@@ -38,7 +38,7 @@ To have the Puppet-Suricata module installed with a basic setup, declare the sur
 ``` 
 
 The Puppet modules applies a default configuration based on your operating system. By default it will use your first interface as montior interafce for Suricata and applies a minimal suricata.yaml configuration. 
-For more configuration option please see the suricata.yaml on the [Suricata Github clone repository](https://github.com/inliniac/suricata/blob/master/suricata.yaml.in) and the [Suricata Documentation](http://jasonish-suricata.readthedocs.io/en/latest/configuration/suricata-yaml.html).
+For more configuration option please see the suricata.yaml on the [Suricata Github clone repository](https://github.com/OISF/suricata/blob/master/suricata.yaml.in) and the [Suricata Documentation](https://suricata.readthedocs.io/en/latest/configuration/suricata-yaml.html).
 
 ## Usage
 
