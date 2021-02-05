@@ -8,6 +8,10 @@
 #   Choose whether suricata should be present, absent, latest or version
 #   Defaults to 'present'
 #
+# [*package_manage*]
+#   Choose whether this module will install Suricata service
+#   Defaults to true
+# 
 # [*package_name*]
 #   Name of suricata package in repo
 #   Defaults to 'suricata'
@@ -24,6 +28,10 @@
 #   Directory of suricatas log files
 #   Defaults to '/var/log/suricata'
 #
+# [*service_manage*]
+#   Choose whether this module will manage the suricata service
+#   Defaults to true
+# 
 # [*service_ensure*]
 #   Choose whether suricata service is running or stopped
 #   Defaults to 'running'
@@ -87,11 +95,13 @@
 
 class suricata (
   String $ensure,
+  Boolean $package_manage,
   String $package_name,
   Stdlib::Absolutepath $config_dir,
   String $config_name,
   Stdlib::Absolutepath $log_dir,
   Enum['running', 'stopped'] $service_ensure,
+  Boolean $service_manage,
   String $service_name,
   Boolean $service_enable,
   String $service_provider,
@@ -131,7 +141,7 @@ class suricata (
   contain ::suricata::config
   contain ::suricata::service
 
-  Class['::suricata::install']->
-  Class['::suricata::config']~>
-  Class['::suricata::service']
+  Class['::suricata::install']
+  -> Class['::suricata::config']
+  ~> Class['::suricata::service']
 }

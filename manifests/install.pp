@@ -1,37 +1,40 @@
 class suricata::install {
 
-  case $::osfamily {
-    'RedHat': {
-      if $::suricata::configure_epel {
-        $pkg_require = Package['epel-release']
+  if $::suricata::package_manage {
 
-        package { 'epel-release':
-          ensure => installed,
-        }
-      } else { $pkg_require = undef }
-    }
-    'Debian': {
-      if $::operatingsystem == 'ubuntu' {
-        if $::suricata::ppa_source {
-          $pkg_require = Apt::Ppa[$::suricata::ppa_source]
+    case $::osfamily {
+      'RedHat': {
+        if $::suricata::configure_epel {
+          $pkg_require = Package['epel-release']
 
-          include ::apt
-          apt::ppa { $::suricata::ppa_source: 
-            package_manage => true,
+          package { 'epel-release':
+            ensure => installed,
           }
-        }
-      } else { $pkg_require = undef }
+        } else { $pkg_require = undef }
+      }
+      'Debian': {
+        if $::operatingsystem == 'ubuntu' {
+          if $::suricata::ppa_source {
+            $pkg_require = Apt::Ppa[$::suricata::ppa_source]
+
+            include ::apt
+            apt::ppa { $::suricata::ppa_source:
+              package_manage => true,
+            }
+          }
+        } else { $pkg_require = undef }
+      }
+      default: {
+        $pkg_require = undef
+
+        notice("Your operating system: ${::osfamily} is not support")
+      }
+
     }
-    default: {
-      $pkg_require = undef
 
-      notice("Your operating system: ${::osfamily} is not support")
+    package { $::suricata::package_name:
+      ensure  => $::suricata::ensure,
+      require => $pkg_require,
     }
-
-  }
-
-  package { $::suricata::package_name:
-    ensure  => $::suricata::ensure,
-    require => $pkg_require,
   }
 }
