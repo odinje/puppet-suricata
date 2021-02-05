@@ -171,6 +171,12 @@ This module includes a resource for adding scripts. This resource adds the scrip
 Choose whether suricata should be present, absent, latest or version
 Defaults to 'present'
 
+#### `package_manage`
+
+Choose whether this module should handle installation of Suricata
+
+Defaults to true
+
 #### `package_name`
 
 Name of suricata package in repo
@@ -193,6 +199,12 @@ Defaults to 'suricata.yaml'
 Directory of suricatas log files
 
 Defaults to '/var/log/suricata'
+
+### `service_manage`
+
+Choose whether this module should manage Suricata service
+
+Defaults to true
 
 #### `service_ensure`
 
