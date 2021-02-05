@@ -20,7 +20,7 @@ class suricata::service {
           content => epp('suricata/suricata.service.epp'),
         }
 
-        exec { 'Daemon-reload':
+        exec { 'suriata-daemon-reload':
           command     => '/bin/systemctl daemon-reload',
           subscribe   => File["${systemd_path}/suricata.service"],
           refreshonly => true,
